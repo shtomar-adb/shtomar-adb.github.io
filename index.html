@@ -2,10 +2,662 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Shivam Tomar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shivam Tomar | Staff Software Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --text-primary: #f0ece2;
+            --text-secondary: #a8a4a0;
+            --accent: #e85d04;
+            --accent-glow: rgba(232, 93, 4, 0.3);
+            --border-subtle: rgba(240, 236, 226, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated background */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse 80% 50% at 20% -10%, rgba(232, 93, 4, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(232, 93, 4, 0.1) 0%, transparent 40%),
+                linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.03em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 5rem;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .greeting {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .greeting::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 2rem;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 500;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-title span {
+            display: block;
+            color: var(--accent);
+        }
+
+        .hero-role {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .hero-company {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .hero-company .divider {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .hero-description {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 500px;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            background: #ff6b1a;
+            box-shadow: 0 0 50px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Stats Card */
+        .stats-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .stats-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.02);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Expertise Section */
+        .expertise {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .expertise-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .expertise-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.4s ease;
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(232, 93, 4, 0.3);
+        }
+
+        .expertise-card:hover::after {
+            width: 100%;
+        }
+
+        .expertise-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 4px;
+            background: rgba(232, 93, 4, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .expertise-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .expertise-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Education Section */
+        .education {
+            padding: 4rem 0 6rem;
+        }
+
+        .education-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .edu-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .edu-card:hover {
+            border-color: rgba(232, 93, 4, 0.3);
+        }
+
+        .edu-degree {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .edu-specialization {
+            font-size: 0.95rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .edu-field {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+
+        .footer-location {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-location svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--accent);
+        }
+
+        .footer-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .greeting {
+                padding-left: 0;
+            }
+
+            .greeting::before {
+                display: none;
+            }
+
+            .hero-description {
+                margin: 0 auto 2.5rem;
+            }
+
+            .hero-company {
+                justify-content: center;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .education-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-card {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 6rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome!!</h1>
-    <p>Welcome to shivam tomar blogs.</p>
+    <div class="bg-gradient"></div>
+    <div class="noise-overlay"></div>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="#" class="logo">ST.</a>
+            <ul class="nav-links">
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#blogs">Blogs</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <span class="greeting">Hello, I'm</span>
+                        <h1 class="hero-title">
+                            Shivam
+                            <span>Tomar</span>
+                        </h1>
+                        <p class="hero-role">Staff Software Engineer</p>
+                        <p class="hero-company">
+                            <span>Adobe Inc.</span>
+                            <span class="divider"></span>
+                            <span>San Jose, California</span>
+                        </p>
+                        <p class="hero-description">
+                            Crafting exceptional software experiences with 14 years of expertise 
+                            in mobile development, AI agents, and machine learning. Passionate about 
+                            building scalable solutions that push the boundaries of technology.
+                        </p>
+                        <div class="cta-buttons">
+                            <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                            <a href="#expertise" class="btn btn-secondary">View Expertise</a>
+                        </div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-number">14+</div>
+                                <div class="stat-label">Years Experience</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">∞</div>
+                                <div class="stat-label">Lines of Code</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">AI</div>
+                                <div class="stat-label">Agents & ML</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">📱</div>
+                                <div class="stat-label">Mobile Expert</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="expertise" id="expertise">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-tag">What I Do</p>
+                    <h2 class="section-title">Areas of Expertise</h2>
+                </div>
+                <div class="expertise-grid">
+                    <div class="expertise-card">
+                        <div class="expertise-icon">📱</div>
+                        <h3 class="expertise-title">Mobile Development</h3>
+                        <p class="expertise-desc">
+                            Building performant, user-centric mobile applications that deliver 
+                            seamless experiences across iOS and Android platforms.
+                        </p>
+                    </div>
+                    <div class="expertise-card">
+                        <div class="expertise-icon">🤖</div>
+                        <h3 class="expertise-title">AI Agents Development</h3>
+                        <p class="expertise-desc">
+                            Designing and implementing intelligent AI agents that automate complex 
+                            workflows and enhance productivity through cutting-edge technology.
+                        </p>
+                    </div>
+                    <div class="expertise-card">
+                        <div class="expertise-icon">🧠</div>
+                        <h3 class="expertise-title">AI & Machine Learning</h3>
+                        <p class="expertise-desc">
+                            Leveraging machine learning models and AI capabilities to build 
+                            smart solutions that learn, adapt, and deliver exceptional value.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="education" id="education">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-tag">Academic Background</p>
+                    <h2 class="section-title">Education</h2>
+                </div>
+                <div class="education-cards">
+                    <div class="edu-card">
+                        <h3 class="edu-degree">Bachelor of Technology</h3>
+                        <p class="edu-specialization">Computer Science</p>
+                        <p class="edu-field">Foundation in algorithms, data structures, and software engineering principles</p>
+                    </div>
+                    <div class="edu-card">
+                        <h3 class="edu-degree">Master of Software Engineering</h3>
+                        <p class="edu-specialization">Cloud & Mobile Computing</p>
+                        <p class="edu-field">Advanced specialization in distributed systems and mobile architectures</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-location">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>San Jose, California</span>
+            </div>
+            <p class="footer-text">© 2026 Shivam Tomar. Crafted with passion.</p>
+        </div>
+    </footer>
 </body>
 </html>
