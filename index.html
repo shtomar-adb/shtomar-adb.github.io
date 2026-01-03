@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+1@<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -435,6 +435,127 @@
             color: var(--text-secondary);
         }
 
+        /* Blogs Section */
+        .blogs {
+            padding: 4rem 0 6rem;
+        }
+
+        .blogs-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .blog-item {
+            display: block;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            padding: 2rem 2.5rem;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .blog-item:hover {
+            border-color: rgba(232, 93, 4, 0.3);
+            transform: translateX(8px);
+        }
+
+        .blog-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .blog-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .blog-title svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--accent);
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .blog-item:hover .blog-title svg {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 0 6rem;
+        }
+
+        .contact-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            padding: 3rem;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-email {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-email:hover {
+            color: var(--accent);
+        }
+
         /* Footer */
         footer {
             padding: 3rem 0;
@@ -575,10 +696,10 @@
                                 <div class="stat-number">14+</div>
                                 <div class="stat-label">Years Experience</div>
                             </div>
-                            <div class="stat-item">
-                                <div class="stat-number">∞</div>
-                                <div class="stat-label">Lines of Code</div>
-                            </div>
+                            <a href="https://github.com/shtomar-adb/" target="_blank" class="stat-item" style="text-decoration: none;">
+                                <div class="stat-number">⌨️</div>
+                                <div class="stat-label">GitHub</div>
+                            </a>
                             <div class="stat-item">
                                 <div class="stat-number">AI</div>
                                 <div class="stat-label">Agents & ML</div>
@@ -636,21 +757,52 @@
                 </div>
                 <div class="education-cards">
                     <div class="edu-card">
-                        <h3 class="edu-degree">Bachelor of Technology</h3>
-                        <p class="edu-specialization">Computer Science</p>
-                        <p class="edu-field">Foundation in algorithms, data structures, and software engineering principles</p>
-                    </div>
-                    <div class="edu-card">
                         <h3 class="edu-degree">Master of Software Engineering</h3>
                         <p class="edu-specialization">Cloud & Mobile Computing</p>
                         <p class="edu-field">Advanced specialization in distributed systems and mobile architectures</p>
                     </div>
+                    <div class="edu-card">
+                        <h3 class="edu-degree">Bachelor of Technology</h3>
+                        <p class="edu-specialization">Computer Science</p>
+                        <p class="edu-field">Foundation in algorithms, data structures, and software engineering principles</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="blogs" id="blogs">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-tag">Thoughts & Ideas</p>
+                    <h2 class="section-title">Blogs</h2>
+                </div>
+                <div class="blogs-list">
+                    <a href="./blogs/attention-mechanism.html" class="blog-item">
+                        <h3 class="blog-title">
+                            Attention Mechanism in LLM
+                            <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                        </h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-tag">Get In Touch</p>
+                    <h2 class="section-title">Contact</h2>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <p class="contact-label">Email</p>
+                    <a href="mailto:tomar.shivam@gmail.com" class="contact-email">tomar.shivam@gmail.com</a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer id="contact">
+    <footer>
         <div class="container">
             <div class="footer-location">
                 <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
